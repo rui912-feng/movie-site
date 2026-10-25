@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>光影志 · 电影介绍与评分</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="bar">
+    <div class="brand" id="go-top">
+      <span class="clap" aria-hidden="true">
+        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 9h4M3 15h4M17 9h4M17 15h4"/></svg>
+      </span>
+      光影志<small>MOVIE</small>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-login" id="open-login">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>
+      登录 / 注册
+    </button>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <h1>发现好电影，<br>留下你的<em>评分与看法</em></h1>
+  <p>浏览经典与热门影片介绍，使用 QQ 或微信账号登录后即可打分、留言。你的评分和评论保存在本地，刷新页面依然保留。</p>
+  <div class="cats" id="cats" role="tablist" aria-label="类型筛选"></div>
+</section>
+
+<main class="wrap">
+  <div class="grid" id="grid" aria-live="polite"></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>光影志 · 演示性电影介绍站点</span>
+    <span>影片资料为公开常识性介绍；评分与留言数据保存在当前浏览器 localStorage</span>
+  </div>
+</footer>
+
+<!-- 电影详情 -->
+<dialog id="movie-dialog">
+  <div class="dlg-scroll">
+    <button class="dlg-close" id="movie-close" aria-label="关闭">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div id="detail-root"></div>
+  </div>
+</dialog>
+
+<!-- 登录 -->
+<dialog id="login-dialog">
+  <button class="dlg-close" id="login-close" aria-label="关闭" style="position:static;margin:16px 16px 0 auto;display:flex;background:var(--surface-2);border-color:var(--line);color:var(--ink)">
+    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="login-box">
+    <h2 style="margin:0 0 4px;font-size:22px">登录光影志</h2>
+    <p class="li">登录后即可为电影打分并发表留言</p>
+    <div class="login-btns">
+      <button class="sns-btn qq" data-provider="qq">
+        <span class="ic">
+          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-3.9 0-7 2.9-7 6.6 0 1.6.5 3 1.4 4.1-.5.3-1 .9-1 1.6 0 .5.3 1 .7 1.3-.3.3-.5.7-.5 1.1 0 .9.9 1.5 2 1.5h.2c.4 1.2 1.9 2.1 4.2 2.1s3.8-.9 4.2-2.1h.2c1.1 0 2-.6 2-1.5 0-.4-.2-.8-.5-1.1.4-.3.7-.8.7-1.3 0-.7-.5-1.3-1-1.6.9-1.1 1.4-2.5 1.4-4.1C19 4.9 15.9 2 12 2z"/></svg>
+        </span>
+        QQ 登录
+        <span class="arrow">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </span>
+      </button>
+      <button class="sns-btn wx" data-provider="wx">
+        <span class="ic">
+          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M9.3 4C5.3 4 2 6.8 2 10.2c0 2 1.1 3.7 2.9 4.8l-.7 2.2 2.5-1.3c.8.2 1.7.4 2.6.4h.5a5 5 0 0 1-.2-1.5c0-3.1 3-5.6 6.7-5.6h.6C16.3 6.1 13.1 4 9.3 4zm-2.5 4.6a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm5 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4.4 2.1c-3.2 0-5.7 2.1-5.7 4.7s2.5 4.7 5.7 4.7c.7 0 1.4-.1 2-.3l2 1.1-.6-1.8c1.5-.9 2.4-2.3 2.4-3.8 0-2.6-2.5-4.6-5.8-4.6zm-1.9 3.9a.85.85 0 1 1 0-1.7.85.85 0 0 1 0 1.7zm3.8 0a.85.85 0 1 1 0-1.7.85.85 0 0 1 0 1.7z"/></svg>
+        </span>
+        微信登录
+        <span class="arrow">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </span>
+      </button>
+    </div>
+    <div class="nick-row">
+      <label for="nick-input">昵称（可选，不填则使用默认昵称）</label>
+      <input type="text" id="nick-input" maxlength="16" placeholder="例如：爱电影的猫">
+    </div>
+    <p class="sim-note">当前为<b>本地演示登录</b>：不会跳转到 QQ / 微信官方授权，也不会上传任何信息。真实接入需在 QQ 互联 / 微信开放平台注册应用并配置已备案域名与后端回调。</p>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
