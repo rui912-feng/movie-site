@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh‑CN">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial‑scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>光影志电影站</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
@@ -19,7 +19,7 @@
     <div class="login-modal-wrap" id="loginModal">
       <div class="login-modal">
         <h3>登录</h3>
-        <div class="mock‑oauth‑tip">⚠️ QQ/微信为本地模拟登录，无真实第三方授权，数据仅保存在本机浏览器</div>
+        <div class="mock-oauth-tip">⚠️ QQ/微信为本地模拟登录，无真实第三方授权，数据仅保存在本机浏览器</div>
         <div class="login-buttons">
           <button id="btnQQLogin" class="btn oauth-btn">QQ登录(模拟)</button>
           <button id="btnWxLogin" class="btn oauth-btn">微信登录(模拟)</button>
@@ -34,15 +34,17 @@
     <div class="tool-bar">
       <input id="searchInput" placeholder="搜索影片名称、导演、演员" class="search-input"/>
       <div class="genres-scroll" id="genreBar"></div>
-      <div class="data‑backup">
+      <div class="data-backup">
         <button id="exportDataBtn" class="btn sm-btn">导出我的数据</button>
         <button id="importDataBtn" class="btn sm-btn">导入备份</button>
+        <button id="clearLocalBtn" class="btn sm-btn danger-btn">清空本地数据</button>
         <input type="file" id="importFile" accept=".json" style="display:none" />
       </div>
     </div>
 
     <main class="main-container">
       <div id="movieList" class="movie-grid"></div>
+      <div id="emptyTip" class="empty-tip" style="display:none">没有找到匹配的影片</div>
     </main>
 
     <!-- 影片详情弹窗 -->
@@ -54,7 +56,7 @@
     </div>
 
     <!-- 404简单提示 -->
-    <div id="page404" class="page‑404" style="display:none">
+    <div id="page404" class="page-404" style="display:none">
       <h2>404 页面未找到</h2>
       <p>返回<a href="./index.html">首页</a></p>
     </div>
