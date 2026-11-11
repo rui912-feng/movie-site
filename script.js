@@ -345,4 +345,3 @@ function bootstrap(){
   renderMovieList();
 }
 bootstrap();
-
